@@ -4,6 +4,7 @@ Install
 npm install empty-promises
 ```
 
+Quick Guide
 ```javascript
 const emptyPromises = require('emptyPromises');
 const asyncThing = emptyPromises();
@@ -31,6 +32,7 @@ asyncThingWithArgs()
 
 const err = new Error('oh no!');
 const asyncThingWithErr = emptyPromises(null, err);
+
 asyncThing()
   .then(() => {
     t.fail('I should have caught an error');
@@ -39,4 +41,41 @@ asyncThing()
     t.equal(e.message, 'oh no!');
     t.end();
   });  
+```
+
+Practical Usage
+```javascript
+// in mocks.js
+exports.mockSuccessObj = {
+  doATask: emptyPromises()
+};
+exports.mockFailObj = {
+  doATask: emptyPromises(null, new Error('Task failed!'))
+};
+
+// in test.js
+const test = require('tape');
+const mocks = require('./mocks');
+
+test('it works when it works', (t) => {
+  const aBusinessObject = aBusinessObjectFactory(mocks.mockSuccessObj);
+  aBusinessObject.doStuffThatInvolvesMock()
+    .then(() => {
+      t.end('Yay!');
+    })
+    .catch((e) => {
+      t.fail('I should not be here');
+    });
+});
+
+test('it fails when it fails', (t) => {
+  const aBusinessObject = aBusinessObjectFactory(mocks.mockFailObj);
+  aBusinessObject.doStuffThatInvolvesMock()
+    .then(() => {
+      t.fail('I should not be here');
+    })
+    .catch((e) => {
+      t.end('You have failed and that is a good thing!');
+    });
+});
 ```
