@@ -28,3 +28,16 @@ test('with args', (t) => {
       throw e;
     });
 });
+
+test('test error', (t) => {
+  const err = new Error('oh no!');
+  const asyncThing = emptyPromises(null, err);
+  asyncThing()
+    .then(() => {
+      t.fail('I should have caught an error');
+    })
+    .catch((e) => {
+      t.ok(e.message, 'oh no!');
+      t.end();
+    });
+});
