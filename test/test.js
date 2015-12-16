@@ -37,7 +37,7 @@ test('test error', (t) => {
       t.fail('I should have caught an error');
     })
     .catch((e) => {
-      t.ok(e.message, 'oh no!');
+      t.equal(e.message, 'oh no!');
       t.end();
     });
 });

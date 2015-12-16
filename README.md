@@ -18,6 +18,7 @@ asyncThing()
   });
 
 const asyncThingWithArgs = emptyPromises(['foo', 'bar']);
+
 asyncThingWithArgs()
   .spread((foo, bar) => {
     t.equal(foo, 'foo');
@@ -27,4 +28,15 @@ asyncThingWithArgs()
   .catch((e) => {
     throw e;
   });
+
+const err = new Error('oh no!');
+const asyncThingWithErr = emptyPromises(null, err);
+asyncThing()
+  .then(() => {
+    t.fail('I should have caught an error');
+  })
+  .catch((e) => {
+    t.equal(e.message, 'oh no!');
+    t.end();
+  });  
 ```
