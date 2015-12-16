@@ -1,0 +1,31 @@
+{
+  "name": "empty-promises",
+  "version": "0.0.1",
+  "description": "Stubs for promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jray/empty-promises.git"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "promise",
+    "stubs"
+  ],
+  "author": "Johnny Ray Austin <johnny@johnnyray.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jray/empty-promises/issues"
+  },
+  "homepage": "https://github.com/jray/empty-promises#readme",
+  "dependencies": {
+    "bluebird": "^3.1.0"
+  },
+  "devDependencies": {
+    "tape": "^4.2.2"
+  }
+}
