@@ -75,6 +75,7 @@ test('it fails when it fails', (t) => {
       t.fail('I should not be here');
     })
     .catch((e) => {
+      t.equal(e.message, 'Task failed!');
       t.end('You have failed and that is a good thing!');
     });
 });
