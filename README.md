@@ -6,7 +6,7 @@ npm install empty-promises
 
 Quick Guide
 ```javascript
-const emptyPromises = require('emptyPromises');
+const emptyPromises = require('empty-promises');
 const asyncThing = emptyPromises();
 
 asyncThing()
